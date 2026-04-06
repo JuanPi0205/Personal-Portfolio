@@ -1,0 +1,212 @@
+---
+const ASSETS_S3 = import.meta.env.PUBLIC_ASSETS_SKILLS_S3;
+
+const skillCategories = [
+  {
+    title: "Frontend",
+    skills: [
+      {
+        name: "React",
+        icon: `${ASSETS_S3}/React.svg`,
+      },
+      {
+        name: "Next.js",
+        icon: `${ASSETS_S3}/Next.js.svg`,
+      },
+      { name: "Astro", icon: `${ASSETS_S3}/Astro.svg` },
+      {
+        name: "JavaScript",
+        icon: `${ASSETS_S3}/JavaScript.svg`,
+      },
+      {
+        name: "TypeScript",
+        icon: `${ASSETS_S3}/TypeScript.svg`,
+      },
+      {
+        name: "Tailwind",
+        icon: `${ASSETS_S3}/Tailwind.svg`,
+      },
+      { name: "Mapbox GL", icon: `${ASSETS_S3}/Mapbox_GL.svg` },
+      {
+        name: "WebSockets",
+        icon: `${ASSETS_S3}/WebSockets.svg`,
+      },
+      {
+        name: "Android",
+        icon: `${ASSETS_S3}/Android.svg`,
+      },
+      {
+        name: "Java/Kotlin",
+        icon: `${ASSETS_S3}/Java-Kotlin.svg`,
+      },
+      {
+        name: "Flutter",
+        icon: `${ASSETS_S3}/Flutter.svg`,
+      },
+    ],
+  },
+  {
+    title: "Backend",
+    skills: [
+      {
+        name: "NestJS",
+        icon: `${ASSETS_S3}/NestJS.svg`,
+      },
+      {
+        name: "Node.js",
+        icon: `${ASSETS_S3}/Node.js.svg`,
+      },
+      {
+        name: "Java",
+        icon: `${ASSETS_S3}/Java.svg`,
+      },
+      {
+        name: "Go",
+        icon: `${ASSETS_S3}/Go.svg`,
+      },
+      {
+        name: "Python",
+        icon: `${ASSETS_S3}/Python.svg`,
+      },
+      {
+        name: "FastAPI",
+        icon: `${ASSETS_S3}/FastAPI.svg`,
+      },
+      {
+        name: "Django",
+        icon: `${ASSETS_S3}/Django.svg`,
+      },
+      {
+        name: "ASP.NET",
+        icon: `${ASSETS_S3}/ASP.NET.svg`,
+      },
+      {
+        name: "Rust",
+        icon: `${ASSETS_S3}/Rust.svg`,
+      },
+    ],
+  },
+  {
+    title: "Databases",
+    skills: [
+      {
+        name: "SQL Server",
+        icon: `${ASSETS_S3}/SQL_Server.svg`,
+      },
+      {
+        name: "Oracle",
+        icon: `${ASSETS_S3}/Oracle.svg`,
+      },
+      {
+        name: "PostgreSQL",
+        icon: `${ASSETS_S3}/PostgreSQL.svg`,
+      },
+      {
+        name: "MySQL",
+        icon: `${ASSETS_S3}/MySQL.svg`,
+      },
+    ],
+  },
+  {
+    title: "Cloud & DevOps",
+    skills: [
+      {
+        name: "AWS",
+        icon: `${ASSETS_S3}/AWS.svg`,
+      },
+      {
+        name: "Docker",
+        icon: `${ASSETS_S3}/Docker.svg`,
+      },
+      {
+        name: "Git",
+        icon: `${ASSETS_S3}/Git.svg`,
+      },
+    ],
+  },
+  {
+    title: "Methodologies & AI",
+    skills: [
+      { name: "Kanban", icon: `${ASSETS_S3}/Kanban.svg` },
+      {
+        name: "Jira",
+        icon: `${ASSETS_S3}/Jira.svg`,
+      },
+      {
+        name: "Claude Code",
+        icon: `${ASSETS_S3}/Claude_Code.svg`,
+      },
+      {
+        name: "Gemini",
+        icon: `${ASSETS_S3}/Gemini.svg`,
+      },
+      {
+        name: "Copilot",
+        icon: `${ASSETS_S3}/Copilot.svg`,
+      },
+    ],
+  },
+  {
+    title: "Other",
+    skills: [
+      {
+        name: "Power BI",
+        icon: `${ASSETS_S3}/Power_BI.svg`,
+      },
+    ],
+  },
+];
+---
+
+<section
+  id="skills"
+  class="bg-[#EDEDED] text-black pb-24 flex flex-col items-center justify-center font-sans w-full"
+>
+  {/* Decorative Divider */}
+  <div class="flex items-center gap-4 mb-20 mt-12">
+    <div class="w-16 h-[2px] bg-black"></div>
+    <div class="text-xl font-bold tracking-widest flex gap-1">
+      <span>&#92;</span><span>&#92;</span><span>&#92;</span><span>/</span><span
+        >/</span
+      ><span>/</span>
+    </div>
+    <div class="w-16 h-[2px] bg-black"></div>
+  </div>
+
+  {/* Title Box */}
+  <div class="border-[6px] border-black px-16 py-6 mb-24">
+    <h2
+      class="text-3xl font-extrabold tracking-[0.4em] uppercase ml-2 text-center"
+    >
+      Skills
+    </h2>
+  </div>
+
+  <div class="w-full max-w-6xl px-6 flex flex-col gap-24">
+    {
+      skillCategories.map((category) => (
+        <div class="flex flex-col w-full">
+          <h3 class="text-xl font-bold tracking-[0.2em] uppercase mb-12 text-center md:text-left border-b-2 border-gray-300 pb-4">
+            {category.title}
+          </h3>
+
+          <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-y-16 gap-x-8 w-full place-items-center">
+            {category.skills.map((skill) => (
+              <div class="flex flex-col items-center gap-4 w-32 group">
+                <img
+                  src={skill.icon}
+                  class="w-14 h-14 object-contain group-hover:scale-125 transition-transform duration-300 drop-shadow-sm"
+                  alt={skill.name}
+                  title={skill.name}
+                />
+                <span class="text-xs font-semibold tracking-widest uppercase text-gray-700 text-center leading-tight">
+                  {skill.name}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</section>

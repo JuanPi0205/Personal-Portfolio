@@ -1,0 +1,80 @@
+---
+import { projects } from "../data/projects";
+const ASSETS_S3 = import.meta.env.PUBLIC_ASSETS_S3;
+---
+
+<section id="portfolio" class="w-full font-sans bg-[#1C1C1C]">
+  {/* Header with background image placeholder */}
+  <div
+    class="relative w-full h-[350px] md:h-[450px] flex items-center justify-center bg-gray-400 bg-cover bg-center overflow-hidden"
+    style={`background-image: url('${ASSETS_S3}/BackgroundLandscape.jpg');`}
+  >
+    {/* Optional overlay to make text readable */}
+    <div class="absolute inset-0 bg-white/20"></div>
+
+    <div
+      class="border-[6px] border-black px-16 py-6 z-10 bg-white/80 backdrop-blur-sm"
+    >
+      <h2
+        class="text-3xl font-extrabold tracking-[0.4em] uppercase ml-2 text-black"
+      >
+        Portfolio
+      </h2>
+    </div>
+  </div>
+
+  {/* Projects Grid */}
+  <div
+    class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-full bg-[#1C1C1C]"
+  >
+    {
+      projects.map((project) => (
+        <div class="group relative w-full aspect-4/3 bg-gray-800 overflow-hidden cursor-pointer">
+          {/* Project Image */}
+          <img
+            src={project.screenshots[0]}
+            alt={project.title}
+            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+          />
+
+          {/* Hover Overlay */}
+          <div class="absolute inset-0 bg-black/85 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center text-white p-6">
+            {/* Decorative glow / circle (like eatsome has) */}
+            <div class="w-48 h-48 rounded-full border border-emerald-500/30 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none scale-50 group-hover:scale-100 transition-transform duration-700 shadow-[0_0_30px_rgba(16,185,129,0.15)] opacity-0 group-hover:opacity-100" />
+
+            <div class="relative z-10 flex flex-col items-center">
+              <p class="text-[10px] uppercase tracking-[0.2em] mb-4 text-gray-400 font-medium">
+                {project.type}
+              </p>
+              <h3 class="text-3xl font-bold tracking-wider mb-3 lowercase">
+                {project.title}
+              </h3>
+              <p class="text-xs text-gray-400 mb-10 text-center max-w-[200px] leading-relaxed">
+                {project.shortDesc}
+              </p>
+
+              {/* Buttons */}
+              <div class="flex items-center gap-1 font-bold text-[10px] tracking-[0.2em] uppercase">
+                <span class="text-gray-500">|</span>
+                <a
+                  href={`/projects/${project.slug}`}
+                  class="hover:text-gray-300 px-3 py-1 transition-colors"
+                >
+                  More
+                </a>
+                <span class="text-gray-500">|</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+
+  {/* Footer Section */}
+  <div
+    class="bg-[#121212] text-white py-8 text-center text-sm font-bold tracking-wider"
+  >
+    And many more to come!
+  </div>
+</section>
