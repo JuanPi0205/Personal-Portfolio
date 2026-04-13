@@ -1,3 +1,5 @@
+const ASSETS_S3 = import.meta.env.PUBLIC_ASSETS_S3;
+
 export interface Project {
   slug: string;
   title: string;
@@ -5,18 +7,20 @@ export interface Project {
   shortDesc: string;
   longDesc: string;
   techStack: string[];
-  githubLink: string;
+  githubLinks: { label: string; url: string }[];
   screenshots: string[];
+  initImage: string;
 }
 
-// Ensure you replace these placeholders with your real info
 export const projects: Project[] = [
   {
     slug: "saas-churn-prediction-api",
     title: "SaaS Churn Predictor",
     type: "Data Science & API Development",
-    shortDesc: "Modelo predictivo de Machine Learning balanceado con SMOTE y desplegado como una API REST con FastAPI para detectar clientes de telecomunicaciones en riesgo de abandono.",
-    longDesc: "Este proyecto abarca el ciclo de vida completo de un producto de datos, conectando el análisis estadístico con la ingeniería de software. Inició con un Análisis Exploratorio de Datos (EDA) que reveló que variables como los cargos mensuales (MonthlyCharges), la antigüedad (tenure) y el servicio de Fibra Óptica eran determinantes en la fuga de clientes. Para la predicción, se implementó un algoritmo RandomForestClassifier. Tras detectar un fuerte desbalance de clases que ocultaba a los clientes enojados, se aplicó la técnica de sobremuestreo SMOTE, logrando disparar la exhaustividad (Recall) del modelo de un 46% a un 71% en datos reales de prueba. Finalmente, el modelo fue serializado e integrado en un backend construido con FastAPI y Pydantic. La API resultante valida payloads JSON, reconstruye dinámicamente la matriz de variables categóricas (One-Hot Encoding) y devuelve predicciones en milisegundos, lista para integrarse en cualquier CRM o dashboard empresarial.",
+    shortDesc:
+      "Machine Learning predictive model balanced with SMOTE and deployed as a REST API using FastAPI to detect telecommunications customers at risk of churn.",
+    longDesc:
+      "This project encompasses the full lifecycle of a data product, bridging statistical analysis with software engineering. It began with an Exploratory Data Analysis (EDA) that revealed variables such as MonthlyCharges, tenure, and Fiber Optic service as key drivers of customer churn. A RandomForestClassifier algorithm was implemented for prediction. After detecting a strong class imbalance that hid dissatisfied customers, the SMOTE oversampling technique was applied, successfully boosting the model's Recall from 46% to 71% on real test data. Finally, the model was serialized and integrated into a backend built with FastAPI and Pydantic. The resulting API validates JSON payloads, dynamically reconstructs the categorical variable matrix (One-Hot Encoding), and returns predictions in milliseconds, ready to be integrated into any CRM or business dashboard.",
     techStack: [
       "Python",
       "FastAPI",
@@ -26,78 +30,112 @@ export const projects: Project[] = [
       "Seaborn",
       "Joblib",
       "Pydantic",
+      "Docker",
+    ],
+    githubLinks: [
+      { label: "Backend API", url: "https://github.com/JuanPi0205/saas-churn-prediction-API/tree/main" },
+      { label: "Data Model", url: "https://github.com/JuanPi0205/saas-churn-prediction-LM" }
+    ],
+    screenshots: [
+      `${ASSETS_S3}/projectChurn/Saas-churn-Prediction-API.png`,
+      `${ASSETS_S3}/projectChurn/Saas-churn-Prediction.png`,
+      `${ASSETS_S3}/projectChurn/Saas-churn-Prediction2.png`,
+      `${ASSETS_S3}/projectChurn/Saas-churn-Prediction-API2.png`,
+    ],
+    initImage: `${ASSETS_S3}/projectChurn/Init_Saas.png`,
+  },
+  {
+    slug: "ecommerce-productos-autoctonos-boyaca",
+    title: "Autoctonos",
+    type: "Full-Stack Development & Tech Consulting",
+    shortDesc: "E-commerce platform developed with Astro and Django. It features a strategic payment integration with PayU, selected after a business analysis to maximize the client's profitability.",
+    longDesc: "Collaborative development of a comprehensive e-commerce platform designed to boost the digitalization and sale of traditional baked goods and typical products from the Boyacá region. To ensure a seamless user experience and exceptionally fast SEO, the frontend was built using Astro, while all business logic, product catalog, and the admin panel were orchestrated with a robust Django backend.\n\nBeyond technical execution, my role involved direct business consulting. The client needed to integrate digital payment methods, but with a critical constraint: the profit margins for artisanal products are tight, making high transaction fees unviable. To solve this, I delved into the business's financial operations, conducted an exhaustive research of payment gateways in the Colombian market, and determined that PayU was the optimal choice based on its cost structure. We led the full integration of the PayU API, ensuring secure transactions while protecting the local business's profitability. The result is a complete, scalable technological solution that is, above all, empathetic to the client's financial reality.",
+    techStack: [
+      "Astro",
+      "Django",
+      "Python",
+      "JavaScript / TypeScript",
+      "API Integrations (PayU)",
+      "PostgreSQL",
       "Docker"
     ],
-    githubLink: "https://github.com/juanjo",
+    githubLinks: [],
     screenshots: [
-      "https://images.unsplash.com/photo-1549692520-acc6669e2f0c?q=80&w=1200&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1555421689-d68471e189f2?q=80&w=1200&auto=format&fit=crop"
+      `${ASSETS_S3}/autoctonos/AutoctonosHero.png`,
+      `${ASSETS_S3}/autoctonos/AutoctonosHero2.png`,
+      `${ASSETS_S3}/autoctonos/AutoctonosCart.png`,
+      `${ASSETS_S3}/autoctonos/AutoctonosProd.png`,
     ],
+    initImage: `${ASSETS_S3}/autoctonos/Init_autoctonos.png`,
   },
   {
-    slug: "fintech-dashboard",
-    title: "NeoBank Dashboard",
-    type: "Backend Architecture",
-    shortDesc: "Real-time financial tracking and charting.",
-    longDesc: "Developing a robust financial tracking system requires handling thousands of concurrent websocket connections to deliver live stock data without latency. The architecture involves a microservices approach built on Rust and Node.js.\n\nTo ensure scalability, we implemented an event-driven design pattern using Redis queues, allowing the frontend to immediately render highly responsive D3 charts upon connection.",
-    techStack: ["Node.js", "Rust", "WebSockets", "Redis"],
-    githubLink: "https://github.com/juanjo",
-    screenshots: [
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1200&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1200&auto=format&fit=crop"
+    slug: "ecommerce-HacksToolsCol",
+    title: "HacksToolsCol High-Concurrency E-Commerce: Cybersecurity & Hardware (Work In Progress)",
+    type: "Data-Driven Architecture & Full-Stack Development",
+    shortDesc: "Scalable platform (WIP) for the cybersecurity ecosystem in Medellín. Designed with Astro and Django to handle high projected traffic, integrating Apple Pay for a frictionless checkout.",
+    longDesc: "I am currently leading the architecture and active development (in the construction phase) of a highly specialized hacking e-commerce platform based in Medellín, focused on selling hardware and tools for cybersecurity professionals and penetration testers.\n\nWhat makes this project exceptional is its data-driven conception. Before writing the first line of code, I executed data analysis and market forecasting that revealed an unusually high projected traffic and concurrency volume for this niche. This business intelligence dictated the architecture from day zero: the system could not be a traditional e-commerce; it had to be prepared to scale massively.\n\nTo support this operational load, I structured the frontend using Astro's island architecture, backed by a robust and resilient backend in Django. Understanding that the end-user is a highly technical profile with strict privacy demands, I discarded traditional, slow payment flows and orchestrated a direct integration with the Apple Pay API. This project reflects my ability to anticipate bottlenecks through data analysis and build platforms ready to scale before going into production.",
+    techStack: [
+      "Astro",
+      "Django",
+      "Data Analysis & Forecasting",
+      "Apple Pay API Integration",
+      "Python",
+      "TypeScript",
+      "PostgreSQL",
+      "Docker"
     ],
+    githubLinks: [],
+    screenshots: [
+      `${ASSETS_S3}/hackstool/HackHero.png`,
+      `${ASSETS_S3}/hackstool/HackHero2.png`,
+      `${ASSETS_S3}/hackstool/HackHero3.png`,
+      `${ASSETS_S3}/hackstool/HackShop.png`,
+    ],
+    initImage: `${ASSETS_S3}/hackstool/Init_Hacks.png`,
   },
   {
-    slug: "drone-controller",
-    title: "DJI Fleet Controller",
-    type: "Fullstack Development",
-    shortDesc: "Enterprise drone fleet management platform.",
-    longDesc: "Managing a decentralized fleet of drones requires a precise and secure command protocol. This platform allows operators to dispatch, monitor, and retrieve telemetry data from multiple drones simultaneously through a web interface.\n\nSecurity is paramount; all communications are encrypted with AES-256 and routed through dedicated endpoints on AWS IoT Core to ensure zero tampering with flight paths.",
-    techStack: ["Astro", "AWS IoT", "Django", "PostgreSQL"],
-    githubLink: "https://github.com/juanjo",
-    screenshots: [
-      "https://images.unsplash.com/photo-1508614589041-895b88991e3e?q=80&w=1200&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1473968512647-3e447244af8f?q=80&w=1200&auto=format&fit=crop"
+    slug: "api-gestion-polizas-arrendamiento-core",
+    title: "RESTful API - Lease Policy and Risk Management",
+    type: "Backend Development & Software Architecture",
+    shortDesc: "Spring Boot system structured under Hexagonal Architecture. It implements resilience patterns (Circuit Breaker) and secure transacting (Outbox) for integration with legacy systems.",
+    longDesc: "Development of a robust RESTful API aimed at managing the lifecycle of lease policies and their associated risks. The project was structured under the principles of Hexagonal Architecture (Ports and Adapters) with the primary goal of strictly isolating business rules from external infrastructure and the underlying framework.\n\nOne of the most prominent architectural challenges was protecting and managing incoming traffic by simulating a distributed architecture. To avoid coupling security logic within the controllers, perimeter interception was implemented to simulate API Gateway behavior. This was achieved by designing a global security filter (`ApiKeyFilter`) in the configuration layer that statelessly intercepts and validates authorization headers (`x-api-key`) across all HTTP requests, emulating M2M (Machine-to-Machine) security standards.\n\nFor handling external integrations (a simulated legacy CORE system), the platform implements a resilient communication strategy. The Outbox Pattern was integrated to guarantee zero event loss, saving notification intents in the same database transaction (PostgreSQL) as the main entity. Furthermore, the outbound adapter to the CORE is protected by a Circuit Breaker (Resilience4j), preventing thread exhaustion and cascading failures when the external system experiences latency or downtime. The entire environment was containerized using Docker and Docker Compose to ensure immediate portability and deployment.",
+    techStack: [
+      "Java 17",
+      "Spring Boot 3",
+      "PostgreSQL",
+      "Docker & Docker Compose",
+      "Hexagonal Architecture",
+      "Outbox Pattern",
+      "Resilience4j (Circuit Breaker)",
+      "Spring Data JPA (Hibernate)",
+      "Data Transfer Objects (DTO)"
     ],
+    githubLinks: [
+      { label: "View on GitHub", url: "https://github.com/JuanPi0205/prueba-tecnica-polizas" }
+    ],
+    screenshots: [
+      `${ASSETS_S3}/polizas/PolizasApi1.png`,
+      `${ASSETS_S3}/polizas/PolizasApi2.png`,
+      `${ASSETS_S3}/polizas/PolizasApi3.png`,
+    ],
+    initImage: `${ASSETS_S3}/polizas/Init_Polizas.png`,
   },
   {
-    slug: "med-tracker",
-    title: "MedTrack Mobile",
-    type: "Mobile App Development",
-    shortDesc: "Offline-first medical adherence application.",
-    longDesc: "Patients often forget to take life-saving medication. MedTrack is an offline-first mobile application focused on high accessibility and an incredibly simple user interface for the elderly.\n\nThe codebase is heavily optimized Kotlin, utilizing local SQLite databases to ensure alarms trigger even without an internet connection, and synchronizing silently with Firebase once connectivity is restored.",
-    techStack: ["Kotlin", "Android", "Firebase", "SQLite"],
-    githubLink: "https://github.com/juanjo",
-    screenshots: [
-      "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=1200&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1550831107-1553da8c8464?q=80&w=1200&auto=format&fit=crop"
+    slug: "banco-finandina-onboarding",
+    title: "Banco Finandina – App Onboarding",
+    type: "Mobile App",
+    shortDesc: "Animated onboarding screen for the Banco Finandina mobile app, developed as a technical test.",
+    longDesc: "Flutter application that replicates the onboarding flow of the Banco Finandina app. It features 7 swipeable screens with custom images, SVG illustrations, and unique backgrounds per slide. It includes navigation with PageView, progress indicators (dots), a 'Skip' button, and a final animated CTA ('Unleash your banking'). Each slide communicates a key bank feature: product management, payments, transfers, mobile banking, and QR payments.",
+    techStack: ["Flutter", "Dart", "flutter_svg"],
+    githubLinks: [
+      { label: "View on GitHub", url: "https://github.com/JuanPi0205/InterviewMagneto" }
     ],
-  },
-  {
-    slug: "geo-mapper",
-    title: "GeoSpatial Mapper",
-    type: "Geospatial Engineering",
-    shortDesc: "High-performance rendering of urban topographies.",
-    longDesc: "Rendering millions of data points on a browser map usually crashes standard frameworks. GeoSpatial Mapper utilizes Mapbox GL JS combined with custom WebGL layers to render complex 3D topographical data seamlessly.\n\nThe project incorporates dynamic filtering algorithms on the frontend, shifting the computational load to the user's GPU and allowing for 60fps panning across busy metropolitan datasets.",
-    techStack: ["Mapbox GL JS", "TypeScript", "React"],
-    githubLink: "https://github.com/juanjo",
     screenshots: [
-      "https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&w=1200&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1662991039860-394bf3c9ac31?q=80&w=1200&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1501504905252-473c47e087f8?q=80&w=1200&auto=format&fit=crop"
+      `${ASSETS_S3}/interviewFinandina/Finandina1.png`,
+      `${ASSETS_S3}/interviewFinandina/Finandina2.png`,
+      `${ASSETS_S3}/interviewFinandina/Finandina3.png`,
+      `${ASSETS_S3}/interviewFinandina/Finandina4.png`,
     ],
-  },
-  {
-    slug: "ai-assistant",
-    title: "Terminal AI",
-    type: "AI Integration",
-    shortDesc: "CLI tool leveraging Gemini and Claude.",
-    longDesc: "A productivity powerhouse disguised as a simple command-line tool. Terminal AI bridges the gap between raw development environments and large language models, allowing engineers to query contextually aware suggestions directly in their terminal.\n\nIt interfaces simultaneously with Gemini and Claude APIs, parsing local git diffs to generate perfect commit messages and flag potential syntax flaws before building.",
-    techStack: ["Go", "Gemini API", "Claude API", "Bash"],
-    githubLink: "https://github.com/juanjo",
-    screenshots: [
-      "https://images.unsplash.com/photo-1629654297299-c8506221ca97?q=80&w=1200&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=1200&auto=format&fit=crop"
-    ],
+    initImage: `${ASSETS_S3}/interviewFinandina/Gemini_Generated_Image_p6r3sfp6r3sfp6r3.png`,
   },
 ];

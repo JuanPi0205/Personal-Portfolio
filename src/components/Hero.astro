@@ -1,9 +1,10 @@
 ---
-
+const ASSETS_S3 = import.meta.env.PUBLIC_ASSETS_S3;
+const ASSETS_DOCS_S3 = import.meta.env.PUBLIC_ASSETS_DOCUMENTS_S3;
 ---
 
 <section class="h-screen w-full flex bg-[#DCDCDC] overflow-hidden">
-  <div class="w-1/2 flex flex-col justify-center px-12 md:px-24">
+  <div class="w-1/2 flex flex-col justify-center px-12 md:px-24 relative z-10">
     {/* Logo */}
     <div class="absolute top-8 left-12 md:left-24">
       <svg
@@ -28,16 +29,14 @@
       </svg>
     </div>
 
-    {/* Content */}
     <div class="mt-20">
       <h2 class="text-2xl font-semibold mb-2">Hi, I am</h2>
       <h1 class="text-6xl font-bold mb-2">Juan Pineda</h1>
       <h3 class="text-xl text-gray-500 font-medium">Full Stack Developer</h3>
 
-      {/* Social Icons */}
       <div class="flex gap-4 mt-8">
         <a
-          href="#"
+          href="mailto:juanpineda200205@gmail.com"
           class="w-10 h-10 bg-gray-300 rounded flex items-center justify-center hover:bg-gray-400 transition"
         >
           <svg
@@ -50,7 +49,7 @@
           >
         </a>
         <a
-          href="#"
+          href="https://github.com/JuanPi0205"
           class="w-10 h-10 bg-gray-300 rounded flex items-center justify-center hover:bg-gray-400 transition"
         >
           <svg
@@ -63,7 +62,7 @@
           >
         </a>
         <a
-          href="#"
+          href="https://www.linkedin.com/in/juan-jose-sánchez-pineda-01660623b"
           class="w-10 h-10 bg-gray-300 rounded flex items-center justify-center hover:bg-gray-400 transition"
         >
           <svg
@@ -76,20 +75,64 @@
           >
         </a>
       </div>
+
+      {/* CV Download Buttons */}
+      <div class="flex flex-col sm:flex-row gap-4 mt-10">
+        <a 
+          href={`${ASSETS_DOCS_S3}/JuanPinedaCV.pdf`} 
+          download="JuanPinedaCV.pdf"
+          target="_blank" 
+          rel="noopener noreferrer" 
+          class="px-6 py-3 bg-black text-white font-bold text-[10px] tracking-widest uppercase hover:bg-gray-800 transition shadow-lg text-center"
+        >
+          Descargar CV en Español
+        </a>
+        <a 
+          href={`${ASSETS_DOCS_S3}/JuanPinedaCV___English.pdf`} 
+          download="JuanPinedaCV_English.pdf"
+          target="_blank" 
+          rel="noopener noreferrer" 
+          class="px-6 py-3 border-[2px] border-black text-black font-bold text-[10px] tracking-widest uppercase hover:bg-black hover:text-white transition shadow-lg text-center"
+        >
+          Download CV
+        </a>
+      </div>
     </div>
   </div>
 
-  {/* Right Column: Dark Section */}
   <div
-    class="w-1/2 bg-black relative shadow-2xl flex flex-col pt-8"
-    style="clip-path: polygon(15% 0, 100% 0, 100% 100%, 0% 100%);"
+    class="w-1/2 relative shadow-2xl flex flex-col pt-8 bg-cover bg-center"
+    style={`clip-path: polygon(15% 0, 100% 0, 100% 100%, 0% 100%); background-image: url('${ASSETS_S3}/juanjo-hero-bg.jpg');`}
   >
+    {
+      /* Subtle gradient overlay at the top to ensure the white navbar is always readable against the bright sky */
+    }
+    <div
+      class="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-black/60 to-transparent z-10 pointer-events-none"
+    >
+    </div>
+
     {/* Navigation */}
-    <nav class="flex justify-end pr-12 gap-8 text-white font-medium text-sm z-10">
-      <a href="#about" class="hover:text-gray-300 transition mt-2">About me</a>
-      <a href="#skills" class="hover:text-gray-300 transition mt-2">Skills</a>
-      <a href="#portfolio" class="hover:text-gray-300 transition mt-2">Portfolio</a>
-      <a href="#" class="bg-white text-black px-6 py-2 rounded-full font-bold hover:bg-gray-200 transition">CONTACT ME</a>
+    <nav
+      class="flex justify-end pr-12 gap-8 text-white font-medium text-sm z-20 relative"
+    >
+      <a
+        href="#about"
+        class="hover:text-gray-200 drop-shadow-md transition mt-2">About me</a
+      >
+      <a
+        href="#skills"
+        class="hover:text-gray-200 drop-shadow-md transition mt-2">Skills</a
+      >
+      <a
+        href="#portfolio"
+        class="hover:text-gray-200 drop-shadow-md transition mt-2">Portfolio</a
+      >
+      <a
+        href="mailto:juanpineda200205@gmail.com"
+        class="bg-white text-black px-6 py-2 rounded-full font-bold hover:bg-gray-200 transition shadow-lg"
+        >CONTACT ME</a
+      >
     </nav>
   </div>
 </section>
@@ -104,18 +147,19 @@
   </div>
 
   <div class="max-w-4xl relative z-10">
-    <h3 class="text-xl tracking-[0.2em] font-semibold mb-6">IT BERRIES</h3>
+    <h3 class="text-xl tracking-[0.2em] font-semibold mb-6">
+      SOFTWARE DEVELOPER
+    </h3>
     <p class="text-sm text-gray-400 leading-relaxed max-w-3xl mb-8">
-      Nulla in velit a metus rhoncus tempus. Nulla congue nulla vel sem varius
-      finibus. Sed ornare sit amet lorem sed viverra. In vel urna quis libero
-      viverra facilisis ut ac est. Morbi commodo, eros in dignissim tempus,
-      lacus odio rutrum augue, in semper sem magna quis tellus. Etiam enim erat,
-      suscipit eu semper a, dictum sit amet elit. Nunc egestas nisi eget enim
-      gravida facilisis. Pellentesque laoreet varius turpis vel pharetra. Ut
-      ante justo, consequat vitae elementum tempor, accumsan nec eros.
+      Full Stack Engineer with 3+ years of experience specializing in
+      distributed systems, high-performance APIs, and AI pipelines. Expert at
+      balancing robust backend architecture (Python, Rust) with modern
+      interfaces (React, Next.js). Proven track record leading complex projects
+      in critical sectors such as defense, with a strong focus on extreme
+      optimization through the adoption of cutting-edge technologies.
     </p>
     <a
-      href="#"
+      href="#about"
       class="inline-block border-l-2 border-white pl-4 text-sm font-semibold hover:text-gray-300 transition"
       >READ MORE</a
     >
