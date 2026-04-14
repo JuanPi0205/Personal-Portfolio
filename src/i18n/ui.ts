@@ -10,7 +10,7 @@ export const ui = {
     // Nav & Hero
     'hero.hi': 'Hi, I am',
     'hero.role': 'Full Stack Developer',
-    'nav.about': 'About me',
+    'nav.about': 'About Me',
     'nav.skills': 'Skills',
     'nav.portfolio': 'Portfolio',
     'nav.contact': 'CONTACT ME',
@@ -18,8 +18,8 @@ export const ui = {
     'hero.cv_en': 'Download CV',
 
     // About
-    'about.title': 'About me',
-    'about.desc': 'Systems Engineer and Full-Stack Developer with over 3 years of experience building high-performance applications. My approach combines backend robustness in Python and Node.js with the agility of modern interfaces in React and Astro , always optimizing processes through generative AI and efficient cloud deployments on AWS.',
+    'about.title': 'About Me',
+    'about.desc': 'Systems Engineer and Full-Stack Developer with over 3 years of experience building high-performance applications. My approach combines backend robustness in Python and Node.js with the agility of modern interfaces in React and Astro, always optimizing processes through generative AI and efficient cloud deployments on AWS.',
     'about.explore': 'EXPLORE',
     'about.design.title': 'Design',
     'about.design.li1': 'I transform ideas into functional digital products, prioritizing scalability and frontend efficiency.',
@@ -32,7 +32,7 @@ export const ui = {
     'about.maint.title': 'Maintenance',
     'about.maint.li1': 'I ensure environment parity (development, testing, production) through the expert use of Docker.',
     'about.maint.li2': 'Continuous monitoring and optimization of utilities and libraries to improve overall system performance.',
-    'about.maint.li3': 'Migration and updating of legacy architectures toward serverless microservices models',
+    'about.maint.li3': 'Migration and updating of legacy architectures toward serverless microservices models.',
 
     // Skills
     'skills.title': 'Skills',
