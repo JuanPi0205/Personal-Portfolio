@@ -1,5 +1,9 @@
 ---
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
 import { projects } from "../data/projects";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 const ASSETS_S3 = import.meta.env.PUBLIC_ASSETS_S3;
 ---
 
@@ -18,7 +22,7 @@ const ASSETS_S3 = import.meta.env.PUBLIC_ASSETS_S3;
       <h2
         class="text-3xl font-extrabold tracking-[0.4em] uppercase ml-2 text-black"
       >
-        Portfolio
+        {t("portfolio.title")}
       </h2>
     </div>
   </div>
@@ -27,11 +31,13 @@ const ASSETS_S3 = import.meta.env.PUBLIC_ASSETS_S3;
   <div class="flex flex-wrap justify-center w-full bg-[#1C1C1C]">
     {
       projects.map((project) => (
-        <div class="group relative w-full md:w-1/2 lg:w-1/3 aspect-4/3 bg-gray-800 overflow-hidden cursor-pointer">
+        <a
+          href={`${lang === "en" ? "" : "/es"}/projects/${project.slug}`}
+          class="group relative block w-full md:w-1/2 lg:w-1/3 aspect-4/3 bg-gray-800 overflow-hidden cursor-pointer"
+        >
           {/* Project Image */}
           <img
             src={project.initImage}
-            alt={project.title}
             class="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-110"
           />
 
@@ -42,29 +48,26 @@ const ASSETS_S3 = import.meta.env.PUBLIC_ASSETS_S3;
 
             <div class="relative z-10 flex flex-col items-center">
               <p class="text-[10px] uppercase tracking-[0.2em] mb-4 text-gray-400 font-medium">
-                {project.type}
+                {project.type[lang]}
               </p>
               <h3 class="text-3xl font-bold tracking-wider mb-3 lowercase text-center">
-                {project.title}
+                {project.title[lang]}
               </h3>
               <p class="text-xs text-gray-400 mb-10 text-center max-w-[200px] leading-relaxed">
-                {project.shortDesc}
+                {project.shortDesc[lang]}
               </p>
 
               {/* Buttons */}
               <div class="flex items-center gap-1 font-bold text-[10px] tracking-[0.2em] uppercase">
                 <span class="text-gray-500">|</span>
-                <a
-                  href={`/projects/${project.slug}`}
-                  class="hover:text-gray-300 px-3 py-1 transition-colors"
-                >
-                  More
-                </a>
+                <span class="hover:text-gray-300 px-3 py-1 transition-colors">
+                  {t("portfolio.more")}
+                </span>
                 <span class="text-gray-500">|</span>
               </div>
             </div>
           </div>
-        </div>
+        </a>
       ))
     }
   </div>

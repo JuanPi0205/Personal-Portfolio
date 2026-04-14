@@ -1,9 +1,14 @@
 ---
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
 const ASSETS_S3 = import.meta.env.PUBLIC_ASSETS_SKILLS_S3;
 
 const skillCategories = [
   {
-    title: "Frontend",
+    titleKey: "skills.cat.frontend",
     skills: [
       {
         name: "React",
@@ -46,7 +51,7 @@ const skillCategories = [
     ],
   },
   {
-    title: "Backend",
+    titleKey: "skills.cat.backend",
     skills: [
       {
         name: "NestJS",
@@ -83,7 +88,7 @@ const skillCategories = [
     ],
   },
   {
-    title: "Databases",
+    titleKey: "skills.cat.databases",
     skills: [
       {
         name: "SQL Server",
@@ -104,7 +109,7 @@ const skillCategories = [
     ],
   },
   {
-    title: "Cloud & DevOps",
+    titleKey: "skills.cat.cloud",
     skills: [
       {
         name: "AWS",
@@ -121,7 +126,7 @@ const skillCategories = [
     ],
   },
   {
-    title: "Methodologies & AI",
+    titleKey: "skills.cat.methods",
     skills: [
       { name: "Kanban", icon: `${ASSETS_S3}/Kanban.svg` },
       {
@@ -143,7 +148,7 @@ const skillCategories = [
     ],
   },
   {
-    title: "Other",
+    titleKey: "skills.cat.other",
     skills: [
       {
         name: "Power BI",
@@ -174,7 +179,7 @@ const skillCategories = [
     <h2
       class="text-3xl font-extrabold tracking-[0.4em] uppercase ml-2 text-center"
     >
-      Skills
+      {t('skills.title')}
     </h2>
   </div>
 
@@ -183,7 +188,7 @@ const skillCategories = [
       skillCategories.map((category) => (
         <div class="flex flex-col w-full">
           <h3 class="text-xl font-bold tracking-[0.2em] uppercase mb-12 text-center md:text-left border-b-2 border-gray-300 pb-4">
-            {category.title}
+            {t(category.titleKey as any)}
           </h3>
 
           <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-y-16 gap-x-8 w-full place-items-center">
