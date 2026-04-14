@@ -1,5 +1,8 @@
 ---
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
 
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <section
@@ -9,7 +12,7 @@
   {/* Title Box */}
   <div class="border-[6px] border-black px-16 py-6 mb-12">
     <h2 class="text-3xl font-extrabold tracking-[0.4em] uppercase ml-2">
-      About me
+      {t("about.title")}
     </h2>
   </div>
 
@@ -17,17 +20,15 @@
   <p
     class="text-center text-gray-700 max-w-3xl mb-16 leading-relaxed px-6 text-[15px]"
   >
-    Systems Engineer and Full-Stack Developer with over 3 years of experience
-    building high-performance applications. My approach combines backend
-    robustness in Python and Node.js with the agility of modern interfaces in
-    React and Astro , always optimizing processes through generative AI and
-    efficient cloud deployments on AWS.
+    {t("about.desc")}
   </p>
 
   {/* Explore Button */}
   <div class="flex items-center gap-6 mb-12 font-bold text-sm tracking-widest">
     <span class="w-[2px] h-6 bg-black"></span>
-    <a href="#about" class="hover:text-gray-500 transition">EXPLORE</a>
+    <a href="#portfolio" class="hover:text-gray-500 transition"
+      >{t("about.explore")}</a
+    >
     <span class="w-[2px] h-6 bg-black"></span>
   </div>
 
@@ -70,22 +71,19 @@
         <h3
           class="text-xl font-extrabold tracking-[0.2em] uppercase mb-4 text-black"
         >
-          Design
+          {t("about.design.title")}
         </h3>
         <ul
           class="text-gray-600 text-sm leading-relaxed pr-4 list-disc ml-4 space-y-2"
         >
           <li>
-            I transform ideas into functional digital products, prioritizing
-            scalability and frontend efficiency.
+            {t("about.design.li1")}
           </li>
           <li>
-            I utilize modern technologies like TypeScript to ensure error-free,
-            easy-to-maintain interfaces.
+            {t("about.design.li2")}
           </li>
           <li>
-            Specialist in user interfaces requiring real-time communication via
-            WebSockets.
+            {t("about.design.li3")}
           </li>
         </ul>
       </div>
@@ -115,24 +113,20 @@
         <h3
           class="text-xl font-extrabold tracking-[0.2em] uppercase mb-4 text-black"
         >
-          Development
+          {t("about.dev.title")}
         </h3>
         <p class="text-gray-600 text-sm leading-relaxed pr-4">
           <ul
             class="text-gray-600 text-sm leading-relaxed pr-4 list-disc ml-4 space-y-2"
           >
             <li>
-              Software engineering with proficiency in multiple languages,
-              including Rust for critical processes and Java for
-              enterprise-grade solutions.
+              {t("about.dev.li1")}
             </li>
             <li>
-              I boost development speed using generative AI tools like Claude
-              Code, Gemini, and GitHub Copilot.
+              {t("about.dev.li2")}
             </li>
             <li>
-              Development of solutions that interact directly with specialized
-              hardware and geospatial data systems.
+              {t("about.dev.li3")}
             </li>
           </ul>
         </p>
@@ -167,23 +161,20 @@
         <h3
           class="text-xl font-extrabold tracking-[0.2em] uppercase mb-4 text-black"
         >
-          Maintenance
+          {t("about.maint.title")}
         </h3>
         <p class="text-gray-600 text-sm leading-relaxed pr-4">
           <ul
             class="text-gray-600 text-sm leading-relaxed pr-4 list-disc ml-4 space-y-2"
           >
             <li>
-              I ensure environment parity (development, testing, production)
-              through the expert use of Docker.
+              {t("about.maint.li1")}
             </li>
             <li>
-              Continuous monitoring and optimization of utilities and libraries
-              to improve overall system performance.
+              {t("about.maint.li2")}
             </li>
             <li>
-              Migration and updating of legacy architectures toward serverless
-              microservices models
+              {t("about.maint.li3")}
             </li>
           </ul>
         </p>

@@ -1,8 +1,8 @@
 ---
-import Layout from "../../layouts/Layout.astro";
-import { projects } from "../../data/projects";
-import type { Project } from "../../data/projects";
-import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+import Layout from "../../../layouts/Layout.astro";
+import { projects } from "../../../data/projects";
+import type { Project } from "../../../data/projects";
+import { getLangFromUrl, useTranslations } from "../../../i18n/utils";
 
 export async function getStaticPaths() {
   return projects.map((project) => {
